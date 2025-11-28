@@ -36,9 +36,9 @@ const analytics = getAnalytics(app);
 
 // Stiamo ignorando le variabili dell'ambiente di sviluppo Canvas per la build pubblica
 // Usiamo il projectId come ID dell'app per la collezione pubblica
+
 const appId = FIREBASE_SDK_CONFIG.projectId; 
-const firebaseConfig = FIREBASE_SDK_CONFIG;
-const initialAuthToken = null; // Token non necessario in produzione pubblica
+const initialAuthToken = null;
 
 // Stato globale di Firebase
 let db = null;
