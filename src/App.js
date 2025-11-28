@@ -145,8 +145,8 @@ const useFirebaseInit = () => {
 const calculatePoints = (setScores) => {
     let setsT1 = 0;
     let setsT2 = 0;
-    let gamesT1 = 0; // Dichiarate qui, usate nel loop e nell'oggetto di ritorno
-    let gamesT2 = 0; // Dichiarate qui, usate nel loop e nell'oggetto di ritorno
+    let gamesT1 = 0; 
+    let gamesT2 = 0; 
     let completeScores = [];
 
     for (const score of setScores) {
@@ -187,7 +187,6 @@ const calculatePoints = (setScores) => {
     }
 
     // Aggiunta di setsT1 e setsT2 all'oggetto restituito per il tracking totale
-    // Non abbiamo bisogno della variabile 'unusedCompleteScores', l'abbiamo rimossa
     
     return { pointsT1, pointsT2, winnerId, gamesT1, gamesT2, setsT1, setsT2 }; 
 };
@@ -800,9 +799,7 @@ const MatchEntry = ({ db, appId, userId, teams }) => {
             return;
         }
 
-        // ERRORE 4 CORRETTO: completeScores è usato per la validazione. 
-        // Viene assegnato due volte (dentro validation e qui), quindi rimuoviamo la seconda assegnazione non necessaria.
-        // Lo lasciamo qui per chiarezza, ma l'assegnazione è implicita in validation.completeScores.
+        // Recuperiamo i valori dalla validazione per la registrazione.
         const { completeScores, gamesT1, gamesT2, pointsT1, pointsT2, winnerId, setsT1, setsT2 } = validation;
 
         try {
