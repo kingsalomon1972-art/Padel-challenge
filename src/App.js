@@ -711,6 +711,7 @@ const validateAndCalculateScores = (setScores) => {
     let setsT2 = 0;
     let gamesT1 = 0; // Usiamo let per la riassegnazione nel loop
     let gamesT2 = 0; // Usiamo let per la riassegnazione nel loop
+    // eslint-disable-next-line no-unused-vars
     let completeScores = [];
 
     for (const scoreStr of validScores) {
