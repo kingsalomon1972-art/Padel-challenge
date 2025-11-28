@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
-
+import { initializeApp } from 'firebase/app';
+// IMPORTAZIONI AUTH (AUTENTICAZIONE)
+import { getAuth, signInAnonymously, signInWithCustomToken } from 'firebase/auth';
+// IMPORTAZIONI FIRESTORE (DATABASE)
+import { getFirestore, doc, setDoc, addDoc, onSnapshot, collection, updateDoc, deleteDoc } from 'firebase/firestore';
 
 // --- CONFIGURAZIONE E UTILS FIREBASE ---
 
