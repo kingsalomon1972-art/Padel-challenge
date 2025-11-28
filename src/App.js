@@ -31,7 +31,7 @@ const analytics = getAnalytics(app);
 
 
 
-};
+
 // ----------------------------------------------------------------
 
 // Stiamo ignorando le variabili dell'ambiente di sviluppo Canvas per la build pubblica
