@@ -145,10 +145,8 @@ const useFirebaseInit = () => {
 const calculatePoints = (setScores) => {
     let setsT1 = 0;
     let setsT2 = 0;
-    // eslint-disable-next-line no-unused-vars 
-    let gamesT1 = 0;
-    // eslint-disable-next-line no-unused-vars
-    let gamesT2 = 0;
+    let gamesT1 = 0; // Dichiarate qui, usate nel loop e nell'oggetto di ritorno
+    let gamesT2 = 0; // Dichiarate qui, usate nel loop e nell'oggetto di ritorno
     let completeScores = [];
 
     for (const score of setScores) {
@@ -189,10 +187,7 @@ const calculatePoints = (setScores) => {
     }
 
     // Aggiunta di setsT1 e setsT2 all'oggetto restituito per il tracking totale
-    // Le variabili gamesT1/gamesT2 sono usate nell'oggetto di ritorno, ma per ESLint sono inutilizzate. 
-    // Manteniamo il codice e la soppressione.
-    // eslint-disable-next-line no-unused-vars
-    const unusedCompleteScores = completeScores; 
+    // Non abbiamo bisogno della variabile 'unusedCompleteScores', l'abbiamo rimossa
     
     return { pointsT1, pointsT2, winnerId, gamesT1, gamesT2, setsT1, setsT2 }; 
 };
@@ -715,8 +710,8 @@ const validateAndCalculateScores = (setScores) => {
 
     let setsT1 = 0;
     let setsT2 = 0;
-    let gamesT1 = 0;
-    let gamesT2 = 0;
+    let gamesT1 = 0; // Usiamo let per la riassegnazione nel loop
+    let gamesT2 = 0; // Usiamo let per la riassegnazione nel loop
     let completeScores = [];
 
     for (const scoreStr of validScores) {
