@@ -7,47 +7,27 @@ import { getFirestore, doc, setDoc, addDoc, onSnapshot, collection, updateDoc, d
 
 // --- CONFIGURAZIONE E UTILS FIREBASE ---
 
-
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDfva9-W7NOVruRI563c5waNCh9x4Aw82w",
+// 🚨 PASSO CRITICO: Devi inserire la tua configurazione Firebase SDK qui 
+// (dal tuo progetto Firebase > Impostazioni > Aggiungi App Web).
+const FIREBASE_SDK_CONFIG = {
+   apiKey: "AIzaSyDfva9-W7NOVruRI563c5waNCh9x4Aw82w",
   authDomain: "padel-challenge-pubblico.firebaseapp.com",
   projectId: "padel-challenge-pubblico",
   storageBucket: "padel-challenge-pubblico.firebasestorage.app",
   messagingSenderId: "524551628066",
   appId: "1:524551628066:web:6d78bb7589e291f157f17b",
-  measurementId: "G-86PLGDTN8T"
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-
-
-
-
-
-
 // ----------------------------------------------------------------
 
-// Stiamo ignorando le variabili dell'ambiente di sviluppo Canvas per la build pubblica
-// Usiamo il projectId come ID dell'app per la collezione pubblica
-
+// DEFINIZIONI DI VARIABILI
 const appId = FIREBASE_SDK_CONFIG.projectId; 
-const initialAuthToken = null;
-
-// Stato globale di Firebase
+const initialAuthToken = null; 
 let db = null;
 let auth = null;
+let firebaseConfig = FIREBASE_SDK_CONFIG; 
 
-if (firebaseConfig.projectId !== "INSERISCI_TUO_PROJECT_ID") { // Esegui l'inizializzazione solo se i placeholder sono stati sostituiti
+// INIZIALIZZAZIONE DI FIREBASE
+if (firebaseConfig.projectId && firebaseConfig.projectId !== "INSERISCI_TUO_PROJECT_ID") { 
   try {
     const app = initializeApp(firebaseConfig);
     db = getFirestore(app);
@@ -1199,12 +1179,12 @@ const ConfigView = ({ db, appId, currentConfig }) => {
 
             {message && (
                 <div className={`mt-4 p-3 rounded-lg text-center ${message.startsWith('Errore') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
-                    {message}
-                </div>
-            )}
-        </div>
-    );
-};
+                        {message}
+                    </div>
+                )}
+            </div>
+        );
+    };
 
 
 // --- VISTA PLANNING ---
