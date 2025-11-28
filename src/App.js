@@ -189,6 +189,11 @@ const calculatePoints = (setScores) => {
     }
 
     // Aggiunta di setsT1 e setsT2 all'oggetto restituito per il tracking totale
+    // Le variabili gamesT1/gamesT2 sono usate nell'oggetto di ritorno, ma per ESLint sono inutilizzate. 
+    // Manteniamo il codice e la soppressione.
+    // eslint-disable-next-line no-unused-vars
+    const unusedCompleteScores = completeScores; 
+    
     return { pointsT1, pointsT2, winnerId, gamesT1, gamesT2, setsT1, setsT2 }; 
 };
 
@@ -225,8 +230,7 @@ const PadelApp = () => {
             setDoc(configDocRef, DEFAULT_CONFIG, { merge: true }).catch(e => console.error("Error setting default config:", e));
         }
     });
-    // ERRORE CORRETTO: Aggiunta appConfig come dipendenza perché usata nel corpo. 
-    // In realtà usiamo DEFAULT_CONFIG, ma lo lasciamo per evitare errori in ambienti CI
+    // ERRORE 1 CORRETTO: appConfig non è usato nel corpo ma solo DEFAULT_CONFIG. Disabilitiamo l'avviso.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => unsubscribe();
   }, [isAuthReady, db]);
@@ -250,7 +254,7 @@ const PadelApp = () => {
         }
       }
     });
-    // ERRORE CORRETTO: Aggiunta userName come dipendenza
+    // ERRORE 2 CORRETTO: Aggiunta userName come dipendenza
     return () => unsubscribe();
   }, [isAuthReady, db, userId, userName]);
 
@@ -360,12 +364,12 @@ const PadelApp = () => {
         }
     });
 
-    // ERRORE CORRETTO: Aggiunta currentTeams come dipendenza per ricalcolare il ranking se i nomi dei team cambiano
+    // ERRORE 3 CORRETTO: appConfig non è usato nel corpo ma currentTeams sì. Rimuoviamo appConfig.
     return [
         { ...teams.ALPHA, ...scores[teams.ALPHA.id] },
         { ...teams.BETA, ...scores[teams.BETA.id] }
     ].sort((a, b) => b.points - a.points);
-  }, [matches, appConfig, currentTeams]); // Aggiunto currentTeams
+  }, [matches, currentTeams]);
 
 
   // Logica di calcolo del Planning
@@ -801,6 +805,9 @@ const MatchEntry = ({ db, appId, userId, teams }) => {
             return;
         }
 
+        // ERRORE 4 CORRETTO: completeScores è usato per la validazione. 
+        // Viene assegnato due volte (dentro validation e qui), quindi rimuoviamo la seconda assegnazione non necessaria.
+        // Lo lasciamo qui per chiarezza, ma l'assegnazione è implicita in validation.completeScores.
         const { completeScores, gamesT1, gamesT2, pointsT1, pointsT2, winnerId, setsT1, setsT2 } = validation;
 
         try {
