@@ -11,6 +11,7 @@ const FIREBASE_SDK_CONFIG = {
     storageBucket: "padel-challenge-pubblico.firebasestorage.app",
     messagingSenderId: "524551628066",
     appId: "1:524551628066:web:6d78bb7589e291f157f17b",
+    }
 
 
 
